@@ -10,11 +10,36 @@ OEBPS_PATH = "zipping area/OEBPS"
 # Changes the title in the cover.html file
 def edit_cover(title):
     filepath = os.path.join(OEBPS_PATH, "cover.html")
-    with open(filepath) as f:
-        data = f.read()
+    with open(filepath, "w") as f:
         index = title.find(".")
         title = title[:index]
-        data = re.sub(r'<img.*>', rf'<img src="cover.jpg" alt="{title}"/>', data)
+        data = """<?xml version="1.0" encoding="utf-8" ?>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+        <head>
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="generator" content="EasyPub v1.50" />
+        <title>
+        Cover
+        </title>
+        <style type="text/css">
+        html,body {height:100%; margin:0; padding:0;}
+        .wedge {float:left; height:50%; margin-bottom: -360px;}
+        .container {clear:both; height:0em; position: relative;}
+        table, tr, th {height: 720px; width:100%; text-align:center;}
+        </style>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        </head>
+        <body>
+        <div class="wedge"></div>
+        <div class="container">
+        <table><tr><td>"""
+        additional_data =  f"""\n<img src="cover.jpg" alt='{title}'/>
+        </td></tr></table>
+        </div>
+        </body>
+        </html> """
+        data = data + additional_data
         with open(filepath, "w") as newfile:
             newfile.write(data)
 ### Checked, is working
@@ -161,6 +186,7 @@ def create_epub(title):
     subprocess.run(f"zip -Xr9Dq {book_name} * -x mimetype -x {book_name}", cwd=zipping_area, shell=True)
     subprocess.run(["mv", book_name, "../"], cwd= zipping_area)
     ## zip -Xr9Dq book.epub * -x mimetype -x book.epub
+    subprocess.run(["rm *.html"], cwd=OEBPS_PATH, shell=True)
 
 def main():
     # Gives the title of the book. a list of the chapter names, as well as a list of chapter contents
