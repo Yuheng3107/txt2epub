@@ -9,10 +9,10 @@ def check_encoding(book_name):
         encoding = chardet.detect(data)['encoding']
     if encoding != 'utf-8':
         correct_encoding(book_name)
-
 def correct_encoding(book_name):
     with codecs.open(book_name, "r", "gb18030") as f:
         data = f.read()
+        data.replace("&", "&amp")
         with codecs.open(book_name, "w", "utf-8") as newfile:
             newfile.write(data)
 
