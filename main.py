@@ -179,8 +179,6 @@ def create_chapters(chapter_names, chapter_contents):
 def create_epub(title):
     ## zip -0Xq book.epub mimetype (Adds mimetype as first file, uncompressed)
     zipping_area = os.path.join(os.getcwd(), "zipping area")
-    index = title.find(".")
-    title = title[:index]
     book_name = f"{title}.epub"
     subprocess.run(["zip", "-0Xq", book_name, "mimetype"], cwd=zipping_area)
     subprocess.run(f"zip -Xr9Dq {book_name} * -x mimetype -x {book_name}", cwd=zipping_area, shell=True)
@@ -192,6 +190,10 @@ def main():
     # Gives the title of the book. a list of the chapter names, as well as a list of chapter contents
     # -each chapter content will be a list of lines
     book_name = input("Enter the name of the book: ")
+    if book_name.find(".txt") != -1:
+        index = book_name.find(".txt")
+        book_name = book_name[:index+1]
+        subprocess.run(["mv", f"{book_name}.txt", book_name])
     title, chapter_names, chapter_contents = parse(book_name)
     chapter_names = [chapter_name.strip() for chapter_name in chapter_names]
     edit_cover(title)

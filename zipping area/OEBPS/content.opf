@@ -3,7 +3,7 @@
 <package version="2.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid">
 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
 <dc:identifier id="bookid">easypub-12fb1042</dc:identifier>
-<dc:title>《旧日学霸》.txt</dc:title>
+<dc:title>《旧日学霸》</dc:title>
 <dc:date>2019</dc:date>
 <dc:rights>Created with EasyPub v1.50</dc:rights>
 <dc:language>zh-CN</dc:language>
@@ -1639,7 +1639,6 @@
 <item id="chapter1622" href="chapter1622.html" media-type="application/xhtml+xml"/>
 <item id="chapter1623" href="chapter1623.html" media-type="application/xhtml+xml"/>
 <item id="chapter1624" href="chapter1624.html" media-type="application/xhtml+xml"/>
-<item id="chapter1625" href="chapter1625.html" media-type="application/xhtml+xml"/>
 </manifest>
 <spine toc="ncxtoc">
             <itemref idref="cover" linear="no"/>
@@ -3269,7 +3268,6 @@
 <itemref idref="chapter1622" linear="yes"/>
 <itemref idref="chapter1623" linear="yes"/>
 <itemref idref="chapter1624" linear="yes"/>
-<itemref idref="chapter1625" linear="yes"/>
 </spine>
 <guide>
         <reference href="cover.html" type="cover" title="Cover"/>
