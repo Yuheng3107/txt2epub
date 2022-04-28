@@ -192,7 +192,7 @@ def main():
     book_name = input("Enter the name of the book: ")
     if book_name.find(".txt") != -1:
         index = book_name.find(".txt")
-        book_name = book_name[:index+1]
+        book_name = book_name[:index]
         subprocess.run(["mv", f"{book_name}.txt", book_name])
     title, chapter_names, chapter_contents = parse(book_name)
     chapter_names = [chapter_name.strip() for chapter_name in chapter_names]
