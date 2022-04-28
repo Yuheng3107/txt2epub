@@ -29,7 +29,9 @@ def parse(book_name):
         for line in f:
             if line == "\n":
                 continue
-            if line.startswith("第"):
+            if line.strip().startswith("第"):
+                if not line.find("章"):
+                    continue
                 chapter_names.append(line)
                 counter += 1
                 empty_list = list()
