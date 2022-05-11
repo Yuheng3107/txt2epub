@@ -2,19 +2,32 @@ import re
 import os
 import chardet
 import codecs
-
-def check_encoding(book_name):
-    with open(book_name, "rb") as f:
-        data = f.read(100)
-        encoding = chardet.detect(data)['encoding']
-    if encoding != 'utf-8':
-        correct_encoding(book_name)
 def correct_encoding(book_name):
     with codecs.open(book_name, "r", "gb18030") as f:
         data = f.read()
         data.replace("&", "&amp")
         with codecs.open(book_name, "w", "utf-8") as newfile:
             newfile.write(data)
+
+
+def check_encoding(book_name):
+    with open(book_name, "rb") as f:
+        data = f.read(100)
+        encoding = chardet.detect(data)['encoding']
+        if encoding != 'utf-8':
+            correct_encoding(book_name)
+            return
+    with open(book_name, "r") as file:
+        ### Cleaning out & which is forbidden in XML
+        data = file.read()
+        data.replace("&", "&amp")
+        with open(book_name, "w") as newfile:
+            newfile.write(data)  
+             
+            
+
+
+
 
 
 
