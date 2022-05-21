@@ -4,6 +4,7 @@ import chardet
 import codecs
 def correct_encoding(book_name):
     with codecs.open(book_name, "r", "gb18030") as f:
+        print("Converting Encoding")
         data = f.read()
         data = data.replace("&", "&amp;")
         data = data.replace("<", "&lt;")
@@ -14,15 +15,15 @@ def correct_encoding(book_name):
 
 def check_encoding(book_name):
     with open(book_name, "rb") as f:
-        print('test')
-        return
-        data = f.read(100)
-        print(data)
+        data = f.read(10000)
         encoding = chardet.detect(data)['encoding']
-        print(encoding)
         if encoding != 'utf-8':
             correct_encoding(book_name)
-            return
+        else:
+            clean_xml(book_name)
+            print("XML Cleaned")
+    
+def clean_xml(book_name):
     with open(book_name, "r") as file:
         ### Cleaning out things which are forbidden in XML
         data = file.read()
@@ -30,7 +31,7 @@ def check_encoding(book_name):
         data = data.replace("<", "&lt;")
         data = data.replace(">", "&gt;")
         with open(book_name, "w") as newfile:
-            newfile.write(data) 
+            newfile.write(data)
              
             
 
