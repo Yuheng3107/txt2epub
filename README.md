@@ -1,4 +1,6 @@
 # txt2epub
+#### Video Demo: https://youtu.be/yDBaujjy0DQ
+#### Description
 A simple project that converts a txt to epub file. Currently, this is purposed for parsing a chinese novel and converting it into .epub format for easy reading, but it can be tweaked for other purposes (Mostly novels).
 
 Dependencies: chardet and codec
