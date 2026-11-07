@@ -3,7 +3,7 @@
 #### Description
 A simple project that converts a txt to epub file. Currently, this is purposed for parsing a chinese novel and converting it into .epub format for easy reading, but it can be tweaked for other purposes (Mostly novels).
 
-Dependencies: chardet and codec
+Dependencies: chardet, codec, and zhconv
 
 How it works:
 The code in main.py detects the encoding and changes it to utf-8 if it is in the gb family of encodings (Chinese encoding). Subsequently, it parses the file to produce the components required for an epub file and zips them all together to form the epub file, removing the files created in the process.
